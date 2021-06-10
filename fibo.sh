@@ -1,6 +1,8 @@
 #!/bin/bash -l
 
-#$ -cwd
-
 module load python3/recommended
-python3 pi.py
+
+import fibo
+
+fibo.fib(1000)
+fibo.fib2(1000)
