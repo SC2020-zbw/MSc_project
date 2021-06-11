@@ -1,5 +1,8 @@
 #!/bin/bash -l
 
+#$ -cwd
+
+
 module load python3/recommended
 
 import fibo
