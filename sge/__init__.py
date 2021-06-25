@@ -25,7 +25,7 @@ class job():
         if (directory==''):
             script = script + '#$ -cwd'
         else:
-            script = script + '#$ -wd' + directory
+            script = script + '#$ -wd' + directory + '\n'
         # script = script + '#$ -wd /home/' + UCL_id +'/Scratch/workspace' 如果可以就把UCL_id设置为参数
 
         # Set the working directory to somewhere in your scratch space.  
@@ -40,15 +40,15 @@ class job():
     def generate_script(name='script_name',script=''):
 
         script_name = str(name) + ".sh"
-        f=open(script_name,'a')
+        f=open(script_name,'w')
         f.write(script)
-        f.close
+        f.close()
 
         return f
 
     def submit_job(script,email='n'):
-        subprocess.run(['qsub','script'],capture_output=True)
-        job_ID = 0
+        job_ID = subprocess.run(['qsub',script],capture_output=True)
+
         return job_ID
 
     def job_status(job_ID):
@@ -57,4 +57,4 @@ class job():
 
     
     def delete_job(job_ID):
-        subprocess.run("qdel job_ID")
+        subprocess.run(['qdel','job_ID'])
