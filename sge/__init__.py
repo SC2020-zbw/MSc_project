@@ -42,7 +42,9 @@ class job():
         script_name = str(name) + ".sh"
         f=open(script_name,'a')
         f.write(script)
-        f.close      
+        f.close
+
+        return f
 
     def submit_job(script,email='n'):
         subprocess.run(['qsub','script'],capture_output=True)
