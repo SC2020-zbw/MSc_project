@@ -41,12 +41,12 @@ class job():
         return f        
 
     def submit_job(script,email='n'):
-        subprocess.run("qsub script")
+        subprocess.run(['qsub','script'],capture_output=True)
         job_ID = 0
         return job_ID
 
     def job_status(job_ID):
-        status = subprocess.run("qstat -f -j job_ID")
+        status = subprocess.run(['qstat','-f','-j','job_ID'],capture_output=True)
         return status
 
     
