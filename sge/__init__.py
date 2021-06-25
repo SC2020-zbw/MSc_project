@@ -33,12 +33,16 @@ class job():
         # Replace "<your_UCL_id>" with your UCL user ID.
         #$ -wd /home/<your_UCL_id>/Scratch/workspace 好像没有workspace怎么办？
 
+        
+
+        return script
+
+    def generate_script(name='script_name',script=''):
+
         script_name = str(name) + ".sh"
         f=open(script_name,'a')
         f.write(script)
-        f.close
-
-        return f        
+        f.close      
 
     def submit_job(script,email='n'):
         subprocess.run(['qsub','script'],capture_output=True)
