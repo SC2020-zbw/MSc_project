@@ -3,7 +3,7 @@ import subprocess
 class job():
 
     def generate_serial_job_script(name='default',RAM_memory='1G',TMPDIR_memory='15G',hour='0',minute='10',seconds='0',directory=''):
-        script = '!/bin/bash -l\n'
+        script = '#!/bin/bash -l\n'
         # Batch script to run a serial job under SGE.
 
         script = script + '#$ -l h_rt=' + str(hour) + ':' + str(minute) + ':' + str(seconds) + '\n'
@@ -47,7 +47,7 @@ class job():
         return f
 
     def submit_job(script,email='n'):
-        job_ID = subprocess.run(['qsub',script],capture_output=True)
+        job_ID = subprocess.run(['qsub',script]) #,capture_output=True
 
         return job_ID
 
