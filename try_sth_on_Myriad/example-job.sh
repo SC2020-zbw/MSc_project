@@ -3,5 +3,4 @@
 #$ -cwd
 
 module load python3/recommended
-python3 pi.py
-10
+python3 pi.py | 10
