@@ -47,7 +47,7 @@ class job():
         return f
 
     def submit_job(script,email='n'):
-        job_ID = subprocess.run(['qsub',script],capture_output=True) 
+        job_ID = subprocess.run(['qsub',script],capture_output=True,encoding='UTF-8') 
         return job_ID
 
     def job_status(job_ID):
