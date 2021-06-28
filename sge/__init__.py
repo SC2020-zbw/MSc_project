@@ -46,16 +46,16 @@ class job():
         return f
 
     def submit_job(script,email='n'):
-        job_message = subprocess.run(['qsub',script],capture_output=True,encoding='UTF-8')
+        job_message = subprocess.run(['qsub',script],capture_output=True,encoding='utf-8')
         job_ID = job_message.stdout.split()[2]
         return job_ID
 
     def job_status(job_ID):
-        status = subprocess.run(['qstat','-j',job_ID],capture_output=True,encoding='UTF-8')
+        status = subprocess.run(['qstat','-j',job_ID],capture_output=True,encoding='utf-8')
         return status
 
     
     def delete_job(job_ID):
-        info = subprocess.run(['qdel',job_ID],capture_output=True,encoding='UTF-8')
+        info = subprocess.run(['qdel',job_ID],capture_output=True)
         delete_info = info.stdout
         return delete_info
