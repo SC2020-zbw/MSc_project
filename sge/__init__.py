@@ -32,13 +32,9 @@ class job():
         #  This is a necessary step as compute nodes cannot write to $HOME.
         # Replace "<your_UCL_id>" with your UCL user ID.
         #$ -wd /home/<your_UCL_id>/Scratch/workspace 好像没有workspace怎么办？
-
-        f=open(name+'.sh','w')
-        f.write(script)
-        f.close()
         
 
-        return f
+        return script
 
     def generate_script(name='script_name',script=''):
 
