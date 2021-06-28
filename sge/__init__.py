@@ -56,6 +56,6 @@ class job():
 
     
     def delete_job(job_ID):
-        info = subprocess.run(['qdel',job_ID],capture_output=True)
+        info = subprocess.run(['qdel',job_ID],capture_output=True,encoding='utf-8')
         delete_info = info.stdout
         return delete_info
