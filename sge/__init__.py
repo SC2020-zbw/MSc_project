@@ -33,9 +33,12 @@ class job():
         # Replace "<your_UCL_id>" with your UCL user ID.
         #$ -wd /home/<your_UCL_id>/Scratch/workspace 好像没有workspace怎么办？
 
+        f=open(name+'.sh','w')
+        f.write(script)
+        f.close()
         
 
-        return script
+        return f
 
     def generate_script(name='script_name',script=''):
 
@@ -57,5 +60,6 @@ class job():
 
     
     def delete_job(job_ID):
-        delete_info = subprocess.run(['qdel',job_ID],capture_output=True,encoding='UTF-8')
+        info = subprocess.run(['qdel',job_ID],capture_output=True,encoding='UTF-8')
+        delete_info = info.stdout
         return delete_info
