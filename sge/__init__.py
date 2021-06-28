@@ -49,7 +49,7 @@ class job():
     def submit_job(script,email='n'):
         job_message = subprocess.run(['qsub',script],capture_output=True,encoding='UTF-8')
         job_ID = job_message.stdout
-        return job_ID
+        return job_message, job_ID
 
     def job_status(job_ID):
         status = subprocess.run(['qstat','-f','-j','job_ID'],capture_output=True)
