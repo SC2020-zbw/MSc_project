@@ -52,9 +52,9 @@ class job():
         return job_ID
 
     def job_status(job_ID):
-        status = subprocess.run(['qstat','-f','-j',job_ID],capture_output=True,encoding='UTF-8')
+        status = subprocess.run(['qstat',job_ID],capture_output=True,encoding='UTF-8')
         return status
 
     
     def delete_job(job_ID):
-        subprocess.run(['qdel','job_ID'])
+        subprocess.run(['qdel',job_ID],capture_output=True,encoding='UTF-8')
