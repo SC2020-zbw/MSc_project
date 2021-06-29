@@ -51,11 +51,12 @@ class job():
         return job_ID
 
     def job_status(job_ID):
-        status = subprocess.run(['qstat','-j',job_ID],capture_output=True,encoding='utf-8')
+        status = subprocess.run(['qstat','-j',job_ID],capture_output=True,shell=True,encoding='utf-8')
+        status =status.stdout.strip()
         return status
 
     
     def delete_job(job_ID):
         info = subprocess.run(['qdel',job_ID],capture_output=True,encoding='utf-8')
-        delete_info = info.stdout.strip()
+        delete_info = info.stdout.strip() #为啥这里一直有/n不是正则表达式
         return delete_info
