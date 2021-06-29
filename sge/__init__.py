@@ -54,7 +54,7 @@ class job():
         status = subprocess.run(['qstat','-j',job_ID],capture_output=True,shell=True,encoding='utf-8')
         status =status.stdout.strip()
         if status == '':
-            status = 'The job' + job_ID + 'does not exist.'
+            status = 'The job ' + job_ID + ' does not exist.'
         return status
 
     
