@@ -39,12 +39,15 @@ class job():
 
     def load_module(module_name,script):
         script = script + 'module load ' + module_name + '\n'
+        return script
 
     def unload_module(module_name,script):
         script = script + 'module unload ' + module_name + '\n'
+        return script
 
     def run_file(script,run_code):
         script = script + run_code + '\n'
+        return script
 
     def generate_script(name='script_name',script=''):
 
