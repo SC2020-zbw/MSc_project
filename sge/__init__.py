@@ -66,7 +66,7 @@ class job():
     def job_status(job_ID):
         status = subprocess.run(['qstat','-j',job_ID],capture_output=True,shell=True,encoding='utf-8')
         status =status.stdout.strip()
-        status = status.split('\n')[2].split()[4]
+        status = status.split('\n')[2].split()[4] #分类情况
         if status == 'qw':
             status = 'This job is queueing and waiting.'
         elif status == 'r':
