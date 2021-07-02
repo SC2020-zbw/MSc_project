@@ -1,3 +1,4 @@
+from os import stat
 import subprocess
 
 class job():
@@ -23,18 +24,27 @@ class job():
         #$ -N Serial_Job
 
         if (directory==''):
-            script = script + '#$ -cwd'
+            script = script + '#$ -cwd \n\n'
         else:
-            script = script + '#$ -wd' + directory + '\n'
+            script = script + '#$ -wd' + directory + '\n\n'
         # script = script + '#$ -wd /home/' + UCL_id +'/Scratch/workspace' 如果可以就把UCL_id设置为参数
 
         # Set the working directory to somewhere in your scratch space.  
         #  This is a necessary step as compute nodes cannot write to $HOME.
         # Replace "<your_UCL_id>" with your UCL user ID.
-        #$ -wd /home/<your_UCL_id>/Scratch/workspace 好像没有workspace怎么办？
+        #$ -wd /home/<your_UCL_id>/Scratch/workspace
         
 
         return script
+
+    def load_module(module_name,script):
+        script = script + 'module load ' + module_name + '\n'
+
+    def unload_module(module_name,script):
+        script = script + 'module unload ' + module_name + '\n'
+
+    def run_file(script,run_code):
+        script = script + run_code + '\n'
 
     def generate_script(name='script_name',script=''):
 
@@ -45,8 +55,8 @@ class job():
 
         return f
 
-    def submit_job(script,email='n'):
-        job_message = subprocess.run(['qsub',script],capture_output=True,encoding='utf-8')
+    def submit_job(script,email='-n'):
+        job_message = subprocess.run(['qsub',email,script],capture_output=True,encoding='utf-8')
         job_ID = job_message.stdout.split()[2]
         return job_ID
 
@@ -54,12 +64,30 @@ class job():
         status = subprocess.run(['qstat','-j',job_ID],capture_output=True,shell=True,encoding='utf-8')
         status =status.stdout.strip()
         status = status.split('\n')[2].split()[4]
-        if status == '':
-            status = 'The job ' + job_ID + ' does not exist.'
+        if status == 'qw':
+            status = 'This job is queueing and waiting.'
+        elif status == 'r':
+            status = 'This job is running.'
+        elif status == 't':
+            status = 'This job is being transferred.'
+        elif status == '':
+            status = 'This job ' + job_ID + ' does not exist.'
+        elif status == 'dr':
+            status = 'This job is being deleted.'
+        elif status == 'Rq':
+            status = 'A pre-job check on a node failed and this job was put back in the queue.'
+        elif status == 'Rr':
+            status = 'This job was rescheduled but is now running on a new node.'
+        elif status == 'Eqw':
+            status = 'There was an error in this jobscript. This will not run.'
         return status
 
 
     def delete_job(job_ID):
-        info = subprocess.run(['qdel',job_ID],capture_output=True,encoding='utf-8')
-        delete_info = info.stdout.strip() #为啥这里一直有/n不是正则表达式
+        if job_ID == 'all':
+            info = subprocess.run(['qdel','*'],capture_output=True,encoding='utf-8')
+            delete_info = info.stdout.strip()
+        else:
+            info = subprocess.run(['qdel',job_ID],capture_output=True,encoding='utf-8')
+            delete_info = info.stdout.strip()
         return delete_info
