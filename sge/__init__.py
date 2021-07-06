@@ -94,3 +94,17 @@ class job():
             info = subprocess.run(['qdel',job_ID],capture_output=True,encoding='utf-8')
             delete_info = info.stdout.strip()
         return delete_info
+
+    def return_output(script_name,job_ID):
+        output = script_name + '.o' + job_ID
+        f=open(output,'r')
+        return_output = f.read()
+        f.close()
+        return return_output
+
+    def return_error(script_name,job_ID):
+        error = script_name + '.e' + job_ID
+        f=open(error,'r')
+        error = f.read()
+        f.close()
+        return error
