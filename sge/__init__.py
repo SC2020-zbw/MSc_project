@@ -97,14 +97,14 @@ class job():
 
     def return_output(script_name,job_ID):
         output = script_name + '.o' + job_ID
-        f=open(output,'r')
+        f=open(output,'r',encoding='utf-8')
         return_output = f.read()
         f.close()
         return return_output
 
     def return_error(script_name,job_ID):
         error = script_name + '.e' + job_ID
-        f=open(error,'r')
+        f=open(error,'r',encoding='utf-8')
         error = f.read()
         f.close()
         return error
