@@ -66,23 +66,24 @@ class job():
     def job_status(job_ID):
         status = subprocess.run(['qstat','-j',job_ID],capture_output=True,shell=True,encoding='utf-8')
         status =status.stdout.strip()
-        status = status.split('\n')[2].split()[4] #分类情况
-        if status == 'qw':
-            status = 'This job is queueing and waiting.'
-        elif status == 'r':
-            status = 'This job is running.'
-        elif status == 't':
-            status = 'This job is being transferred.'
-        elif status == '':
+        if status != '': 
+            status = status.split('\n')[2].split()[4] #分类情况
+            if status == 'qw':
+                status = 'This job is queueing and waiting.'
+            elif status == 'r':
+                status = 'This job is running.'
+            elif status == 't':
+                status = 'This job is being transferred.'
+            elif status == 'dr':
+                status = 'This job is being deleted.'
+            elif status == 'Rq':
+                status = 'A pre-job check on a node failed and this job was put back in the queue.'
+            elif status == 'Rr':
+                status = 'This job was rescheduled but is now running on a new node.'
+            elif status == 'Eqw':
+                status = 'There was an error in this jobscript. This will not run.'
+        else:
             status = 'This job ' + job_ID + ' does not exist.'
-        elif status == 'dr':
-            status = 'This job is being deleted.'
-        elif status == 'Rq':
-            status = 'A pre-job check on a node failed and this job was put back in the queue.'
-        elif status == 'Rr':
-            status = 'This job was rescheduled but is now running on a new node.'
-        elif status == 'Eqw':
-            status = 'There was an error in this jobscript. This will not run.'
         return status
 
 
