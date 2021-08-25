@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "mandelbrot.py", line 51, in <module>
+    mandelbrot(120, 1000,int(sys.argv[1]))
+IndexError: list index out of range

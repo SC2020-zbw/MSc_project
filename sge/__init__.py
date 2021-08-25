@@ -27,7 +27,7 @@ class job():
             script = script + '#$ -cwd \n\n'
         else:
             script = script + '#$ -wd' + directory + '\n\n'
-        # script = script + '#$ -wd /home/' + UCL_id +'/Scratch/workspace' 如果可以就把UCL_id设置为参数
+        # script = script + '#$ -wd /home/' + UCL_id +'/Scratch/workspace'
 
         # Set the working directory to somewhere in your scratch space.  
         #  This is a necessary step as compute nodes cannot write to $HOME.
@@ -67,7 +67,7 @@ class job():
         status = subprocess.run(['qstat','-j',job_ID],capture_output=True,shell=True,encoding='utf-8')
         status =status.stdout.strip()
         if status != '': 
-            status = status.split('\n')[2].split()[4] #分类情况
+            status = status.split('\n')[2].split()[4] 
             if status == 'qw':
                 status = 'This job is queueing and waiting.'
             elif status == 'r':
@@ -97,14 +97,14 @@ class job():
         return delete_info
 
     def return_output(script_name,job_ID):
-        output = script_name + '.o' + job_ID
+        output = script_name + job_ID + '.o'
         f=open(output,'r',encoding='utf-8')
         return_output = f.read()
         f.close()
         return return_output
 
     def return_error(script_name,job_ID):
-        error = script_name + '.e' + job_ID
+        error = script_name + job_ID + '.e'
         f=open(error,'r',encoding='utf-8')
         error = f.read()
         f.close()
