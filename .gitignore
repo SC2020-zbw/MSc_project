@@ -1,10 +1,10 @@
-*.ipynb_checkpoints
+#.ipynb_checkpoints
 
 # return output and error files
-examples/Mandelbrot/*.o*
-examples/LAMMPS/*.o*
-examples/Mandelbrot/*.e*
-examples/LAMMPS/*.e*
+examples/Mandelbrot/*.o
+examples/LAMMPS/*.o
+examples/Mandelbrot/*.e
+examples/LAMMPS/*.e
 
 # images created in Mandelbrot
 # examples/Mandelbrot/*.png
