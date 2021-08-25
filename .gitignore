@@ -1,4 +1,5 @@
-#.ipynb_checkpoints
+/.ipynb_checkpoints
+/__pycache__
 
 # return output and error files
 examples/Mandelbrot/*.o
@@ -7,7 +8,7 @@ examples/Mandelbrot/*.e
 examples/LAMMPS/*.e
 
 # images created in Mandelbrot
-# examples/Mandelbrot/*.png
+examples/Mandelbrot/*.png
 
 # folder contains simple scripts and codes to get familiar with Myriad
 try_sth_on_Myriad/
