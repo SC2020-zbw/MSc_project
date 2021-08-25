@@ -1,16 +1,42 @@
 # MSc project: Integrating Jupyter with UCL HPC systems
 
-## Python library for job schedule in jupyter notebook front end of HPC system **Myriad**
+## Prerequist
 
-There is a **job** class in **sge** library to control the job while interacting with **Myriad** in jupyter notebook front end. 
+ *  Users need to have Myriad account
+ *  Users need to have Jupyter in local laptop
 
-## Goals
+## Usage
 
- * A Job class representing a Grid Engine job in Python
- * Routines for submitting, deleting, querying jobs, retrieving output etc
- * Routines for monitoring queue status
- * Sub-classes with common applications
- * Submitting kernels from the notebook into a job
+ * log in Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
+```shell
+ssh -L 8081:localhost:8081 -o ProxyJump=uccaxxx@socrates.ucl.ac.uk uccaxxx@myriad.rc.ucl.ac.uk
+```
+ * Git clone the repository
+```shell
+git clone git@github.com:SC2020-zbw/MSc_project.git
+```
+```shell
+cd MSc_project
+```
+ * load python3 module
+```shell
+module load python3/recommended
+```
+ * open the jupyter notebook.
+```shell
+virtualenv jupyter
+```
+```shell
+source jupyter/bin/activate
+```
+```shell
+pip3 install jupyter
+```
+```shell
+jupyter notebook --port=8081
+```
+ * Copy the URL and open it in local browser
+ * Create jupyter notebook and use library
 
  ## Examples
 
