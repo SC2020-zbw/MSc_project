@@ -29,7 +29,7 @@ cd MSc_project
 ```shell
 module load python3/recommended
 ```
- * open the jupyter notebook.After the first time succeed in installing the jupyter, **virtualenv jupyter** and **pip3 install jupyter** are not necessary.
+ * open the jupyter notebook. 
 ```shell
 virtualenv jupyter
 ```
@@ -42,8 +42,10 @@ pip3 install jupyter
 ```shell
 jupyter notebook --port=8081
 ```
- * Copy the URL and open it in local browser
- 
+Copy the URL and open it in local browser
+
+After the first time succeed in installing the jupyter, two terminal commands **virtualenv jupyter** and **pip3 install jupyter** are not necessary to open the jupyter notebook. 
+For **virtualenv jupyter**, Since there is no jupyter at first, an virtual environment is necessary at first. Then after **pip3 install jupyter**, Jupyter is then installed.
 
 ### Run examples
 
