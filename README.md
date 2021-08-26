@@ -1,13 +1,19 @@
-# MSc project: Integrating Jupyter with UCL HPC systems
+# MSc project
 
-## Prerequist
+## Integrating Jupyter with UCL HPC systems
 
  *  Users need to have Myriad account
  *  Users need to have Jupyter in local laptop
 
 ## Usage
 
- * log in Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
+### Perparing Jupyter notebook linking to Myriad
+
+ * For users inside the UCL firewall, create a local host and log in Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
+```shell
+ssh -L 8081:localhost:8081 uccaxxx@myriad.rc.ucl.ac.uk
+```
+ * For users outside the UCL firewall, create a local host and log in Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
 ```shell
 ssh -L 8081:localhost:8081 -o ProxyJump=uccaxxx@socrates.ucl.ac.uk uccaxxx@myriad.rc.ucl.ac.uk
 ```
@@ -36,7 +42,7 @@ pip3 install jupyter
 jupyter notebook --port=8081
 ```
  * Copy the URL and open it in local browser
- * Create jupyter notebook and use library
+ 
 
  ## Examples
 

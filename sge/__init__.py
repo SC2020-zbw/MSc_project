@@ -1,9 +1,14 @@
+'''
+The job class representing a Grid Engine job in Python.
+Tools for generating script and managing the job.
+'''
+
 from os import stat
 import subprocess
 
 class job():
 
-    def generate_serial_job_script(name='default',RAM_memory='1G',TMPDIR_memory='15G',hour='0',minute='10',seconds='0',directory=''):
+    def serial_job_script_code(name='default',RAM_memory='1G',TMPDIR_memory='15G',hour='0',minute='10',seconds='0',directory=''):
         script = '#!/bin/bash -l\n'
         # Batch script to run a serial job under SGE.
 
@@ -37,18 +42,22 @@ class job():
 
         return script
 
+    # Load module code in script
     def load_module(module_name,script):
         script = script + 'module load ' + module_name + '\n'
         return script
 
+    # Unload module code in script
     def unload_module(module_name,script):
         script = script + 'module unload ' + module_name + '\n'
         return script
 
+    # code of running file in script
     def run_file(script,run_code):
         script = script + run_code + '\n'
         return script
 
+    # Save the script code into script file
     def generate_script(name='script_name',script=''):
 
         script_name = str(name) + ".sh"
@@ -58,35 +67,38 @@ class job():
 
         return f
 
+    # Submit the job and return the job id
     def submit_job(script_name,email='-n'):
         job_message = subprocess.run(['qsub',script_name],capture_output=True,encoding='utf-8')
         job_ID = job_message.stdout.split()[2]
         return job_ID
 
+    # Check the job status with job id.
     def job_status(job_ID):
         status = subprocess.run(['qstat','-j',job_ID],capture_output=True,shell=True,encoding='utf-8')
         status =status.stdout.strip()
         if status != '': 
             status = status.split('\n')[2].split()[4] 
             if status == 'qw':
-                status = 'This job is queueing and waiting.'
+                status = 'The job ' + job_ID + ' is queueing and waiting.'
             elif status == 'r':
-                status = 'This job is running.'
+                status = 'The job ' + job_ID + ' is running.'
             elif status == 't':
-                status = 'This job is being transferred.'
+                status = 'The job ' + job_ID + ' is being transferred.'
             elif status == 'dr':
-                status = 'This job is being deleted.'
+                status = 'The job ' + job_ID + ' is being deleted.'
             elif status == 'Rq':
-                status = 'A pre-job check on a node failed and this job was put back in the queue.'
+                status = 'A pre-job ' + job_ID + 'check on a node failed and this job was put back in the queue.'
             elif status == 'Rr':
-                status = 'This job was rescheduled but is now running on a new node.'
+                status = 'The job ' + job_ID + ' was rescheduled but is now running on a new node.'
             elif status == 'Eqw':
-                status = 'There was an error in this jobscript. This will not run.'
+                status = 'There was an error in this jobscript ' + job_ID + '. This will not run.'
         else:
-            status = 'This job ' + job_ID + ' does not exist.'
+            status = 'The job ' + job_ID + ' does not exist.'
         return status
 
 
+    # Delete the job with corresponding job id
     def delete_job(job_ID):
         if job_ID == 'all':
             info = subprocess.run(['qdel','*'],capture_output=True,encoding='utf-8')
@@ -96,16 +108,18 @@ class job():
             delete_info = info.stdout.strip()
         return delete_info
 
+    # Read the return output file of job identified by job id.
     def return_output(script_name,job_ID):
-        output = script_name + job_ID + '.o'
-        f=open(output,'r',encoding='utf-8')
-        return_output = f.read()
+        return_output_name = script_name + '.o' + job_ID 
+        f=open(return_output_name,'r',encoding='utf-8')
+        output = f.read()
         f.close()
-        return return_output
+        return output
 
+    # Read the return error file of job identified by job id.
     def return_error(script_name,job_ID):
-        error = script_name + job_ID + '.e'
-        f=open(error,'r',encoding='utf-8')
+        return_error_name = script_name + '.e' + job_ID
+        f=open(return_error_name,'r',encoding='utf-8')
         error = f.read()
         f.close()
         return error
