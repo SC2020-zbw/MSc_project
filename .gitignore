@@ -2,13 +2,13 @@
 __pycache__/
 
 # return files
-examples/Mandelbrot/*.o
-examples/Mandelbrot/*.e
-examples/LAMMPS/*.e
-examples/Mandelbrot/*.po
-examples/LAMMPS/*.po
-examples/Mandelbrot/*.pe
-examples/LAMMPS/*.pe
+examples/Mandelbrot/*.o*
+examples/Mandelbrot/*.e*
+examples/LAMMPS/*.e*
+examples/Mandelbrot/*.po*
+examples/LAMMPS/*.po*
+examples/Mandelbrot/*.pe*
+examples/LAMMPS/*.pe*
 
 # shell files generated in examples
 examples/**/*.sh
