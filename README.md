@@ -2,6 +2,9 @@
 
 ## Integrating Jupyter with UCL HPC systems
 
+The goal of project is to use Jupyter notebook as the frontend of Myriad instead of Bash. A python library is written and two examples in jupyter notebook are used as test.
+
+There are two prerequistes
  *  Users need to have Myriad account
  *  Users need to have Jupyter in local laptop
 
