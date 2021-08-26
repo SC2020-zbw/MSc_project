@@ -22,7 +22,7 @@ ssh -L 8081:localhost:8081 -o ProxyJump=uccaxxx@socrates.ucl.ac.uk uccaxxx@myria
 ```
  * Git clone the repository
 ```shell
-git clone git@github.com:SC2020-zbw/MSc_project.git
+git clone https://github.com/SC2020-zbw/MSc_project.git
 ```
  * Change directory to MSc_project
 ```shell
