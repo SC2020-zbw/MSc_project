@@ -1,23 +1,15 @@
 .ipynb_checkpoints/
 __pycache__/
 
-# return files
-examples/Mandelbrot/*.o*
-examples/Mandelbrot/*.e*
-examples/LAMMPS/*.e*
-examples/Mandelbrot/*.po*
-examples/LAMMPS/*.po*
-examples/Mandelbrot/*.pe*
-examples/LAMMPS/*.pe*
-
-# shell files generated in examples
-examples/**/*.sh
-
-# files created in LAMMPS
-examples/LAMMPS/log.lammps.
-
-# images created in Mandelbrot
-examples/Mandelbrot/*.png
+# only upload the key files in two examples folders Mandelbrot and LAMMPS
+# Since the file name of output are *.e* which can not be ignored in this way(For example: /examples/LAMMPS/*.o*), so I just keep those key files.
+examples/LAMMPS/*
+!/examples/LAMMPS/LAMMPS.ipynb
+!/examples/LAMMPS/data.rhodo
+!/examples/LAMMPS/in.rhodo.scaled
+examples/Mandelbrot/*
+!/examples/Mandelbrot/Mandelbrot.ipynb
+!/examples/Mandelbrot/mandelbrot.py
 
 # folder contains simple scripts and codes to get familiar with Myriad
 try_sth_on_Myriad/
