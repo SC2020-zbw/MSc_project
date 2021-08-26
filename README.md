@@ -2,12 +2,15 @@
 
 ## Integrating Jupyter with UCL HPC systems
 
+The goal of project is to use Jupyter notebook as the frontend of Myriad instead of Bash. A python library is written and two examples in jupyter notebook are used as test.
+
+There are two prerequistes
  *  Users need to have Myriad account
  *  Users need to have Jupyter in local laptop
 
 ## Usage
 
-### Perparing Jupyter notebook linking to Myriad
+### Open Jupyter notebook linking to Myriad
 
  * For users inside the UCL firewall, link to Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
 ```shell
@@ -29,7 +32,7 @@ cd MSc_project
 ```shell
 module load python3/recommended
 ```
- * open the jupyter notebook.After the first time succeed in installing the jupyter, **virtualenv jupyter** and **pip3 install jupyter** are not necessary.
+ * open the jupyter notebook. 
 ```shell
 virtualenv jupyter
 ```
@@ -42,18 +45,20 @@ pip3 install jupyter
 ```shell
 jupyter notebook --port=8081
 ```
- * Copy the URL and open it in local browser
- 
+Copy the URL and open it in local browser
 
-## Examples
+After the first time succeed in installing the jupyter, two terminal commands **virtualenv jupyter** and **pip3 install jupyter** are not necessary to open the jupyter notebook. 
+For **virtualenv jupyter**, Since there is no jupyter at first, an virtual environment is necessary at first. Then after **pip3 install jupyter**, Jupyter is then installed.
+
+### Run examples
 
 There are two examples in the folder **examples**, Mandelbrot and LAMPPS.
 
-### Mandelbrot
+#### Mandelbrot
 
 The python file **mandelbrot.py** is used to generate Mandelbrot set and to plot the figure, the rest of work is to generate the scripts then submit the job in **Myriad** and finally check the output as well as returning figure.
 
-### LAMMPS
+#### LAMMPS
 
 **in.rhodo.scaled** and **data.rhodo** are necessary files for the LAMMPS examples. The LAMMPS example is a little more complicated, users need to open the terminal in jupyter notebook and install matplotlib and LAMMPS logfile in order to run the jupyter notebook. Both of tools are used for benchmark.
 ```shell
