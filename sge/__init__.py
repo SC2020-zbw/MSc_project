@@ -38,8 +38,23 @@ class job():
         #  This is a necessary step as compute nodes cannot write to $HOME.
         # Replace "<your_UCL_id>" with your UCL user ID.
         #$ -wd /home/<your_UCL_id>/Scratch/workspace
-        
 
+        return script
+    
+    def multi_threaded_job_script_code(name='default',RAM_memory='1G',TMPDIR_memory='15G',hour='0',minute='10',seconds='0',directory='',core_num='16'):
+        script = job.serial_job_script_code(name,RAM_memory,TMPDIR_memory,hour,minute,seconds,directory)
+        
+        script = script + '#$ -pe smp ' + core_num + ' \n'
+        # Request number of cores.
+        
+        return script
+    
+    def mpi_job_script_code(name='default',processes_num='16',RAM_memory='1G',TMPDIR_memory='15G',hour='0',minute='10',seconds='0',directory=''):
+        script = job.serial_job_script_code(name,RAM_memory,TMPDIR_memory,hour,minute,seconds,directory)
+        
+        script = script + '#$ -pe mpi ' + processes_num + ' \n'
+        # Select the MPI parallel environment and number of processes.
+        
         return script
 
     # Load module code in script
@@ -52,8 +67,8 @@ class job():
         script = script + 'module unload ' + module_name + '\n'
         return script
 
-    # code of running file in script
-    def run_file(script,run_code):
+    # Add code to run file in script
+    def add_working_code(script,run_code):
         script = script + run_code + '\n'
         return script
 
