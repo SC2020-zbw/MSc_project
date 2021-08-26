@@ -1,11 +1,21 @@
 /.ipynb_checkpoints
 /__pycache__
 
-# return output and error files
-examples/Mandelbrot/*.o
-examples/LAMMPS/*.o
-examples/Mandelbrot/*.e
-examples/LAMMPS/*.e
+# return files
+examples/Mandelbrot/*.o*
+examples/LAMMPS/*.o*
+examples/Mandelbrot/*.e*
+examples/LAMMPS/*.e*
+examples/Mandelbrot/*.po*
+examples/LAMMPS/*.po*
+examples/Mandelbrot/*.pe*
+examples/LAMMPS/*.pe*
+
+# shell files generated in examples
+examples/*.sh
+
+# files created in LAMMPS
+examples/LAMMPS/log.lammps.
 
 # images created in Mandelbrot
 examples/Mandelbrot/*.png
