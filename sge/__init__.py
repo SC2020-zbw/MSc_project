@@ -44,7 +44,7 @@ class job():
     def multi_threaded_job_script_code(name='default',RAM_memory='1G',TMPDIR_memory='15G',hour='0',minute='10',seconds='0',directory='',core_num='16'):
         script = job.serial_job_script_code(name,RAM_memory,TMPDIR_memory,hour,minute,seconds,directory)
         
-        script = script + '#$ -pe smp ' + core_num + ' \n'
+        script = script + '#$ -pe smp ' + core_num + '\n'
         # Request number of cores.
         
         return script
@@ -52,7 +52,7 @@ class job():
     def mpi_job_script_code(name='default',processes_num='16',RAM_memory='1G',TMPDIR_memory='15G',hour='0',minute='10',seconds='0',directory=''):
         script = job.serial_job_script_code(name,RAM_memory,TMPDIR_memory,hour,minute,seconds,directory)
         
-        script = script + '#$ -pe mpi ' + processes_num + ' \n'
+        script = script + '#$ -pe mpi ' + processes_num + '\n'
         # Select the MPI parallel environment and number of processes.
         
         return script
@@ -75,7 +75,7 @@ class job():
     # Save the script code into script file
     def generate_script(name='script_name',script=''):
 
-        script_name = str(name) + ".sh"
+        script_name = name + '.sh'
         f=open(script_name,'w')
         f.write(script)
         f.close()
