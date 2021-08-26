@@ -9,11 +9,11 @@
 
 ### Perparing Jupyter notebook linking to Myriad
 
- * For users inside the UCL firewall, create a local host and log in Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
+ * For users inside the UCL firewall, link to Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
 ```shell
 ssh -L 8081:localhost:8081 uccaxxx@myriad.rc.ucl.ac.uk
 ```
- * For users outside the UCL firewall, create a local host and log in Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
+ * For users outside the UCL firewall, link to Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
 ```shell
 ssh -L 8081:localhost:8081 -o ProxyJump=uccaxxx@socrates.ucl.ac.uk uccaxxx@myriad.rc.ucl.ac.uk
 ```
@@ -21,6 +21,7 @@ ssh -L 8081:localhost:8081 -o ProxyJump=uccaxxx@socrates.ucl.ac.uk uccaxxx@myria
 ```shell
 git clone git@github.com:SC2020-zbw/MSc_project.git
 ```
+ * Change directory to MSc_project
 ```shell
 cd MSc_project
 ```
@@ -28,7 +29,7 @@ cd MSc_project
 ```shell
 module load python3/recommended
 ```
- * open the jupyter notebook.
+ * open the jupyter notebook.After the first time succeed in installing the jupyter, **virtualenv jupyter** and **pip3 install jupyter** are not necessary.
 ```shell
 virtualenv jupyter
 ```
@@ -44,14 +45,20 @@ jupyter notebook --port=8081
  * Copy the URL and open it in local browser
  
 
- ## Examples
+## Examples
 
-There are two examples in the folder **examples**. Mandelbrot and LAMPPS
+There are two examples in the folder **examples**, Mandelbrot and LAMPPS.
 
 ### Mandelbrot
 
- ```python
+The python file **mandelbrot.py** is used to generate Mandelbrot set and to plot the figure, the rest of work is to generate the scripts then submit the job in **Myriad** and finally check the output as well as returning figure.
 
- ```
+### LAMMPS
 
-The python file to generate Mandelbrot set and to plot the figure are created without using library, the rest of work is to generate the scripts then submit the job in **Myriad** and finally check the output as well as returning figure.
+**in.rhodo.scaled** and **data.rhodo** are necessary files for the LAMMPS examples. The LAMMPS example is a little more complicated, users need to open the terminal in jupyter notebook and install matplotlib and LAMMPS logfile in order to run the jupyter notebook. Both of tools are used for benchmark.
+```shell
+pip3 install matplotlib
+```
+```shell
+pip3 install lammps-logfile
+```
