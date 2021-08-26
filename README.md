@@ -67,3 +67,7 @@ pip3 install matplotlib
 ```shell
 pip3 install lammps-logfile
 ```
+
+## Warning
+
+If users want to create new examples, key files should be concerned in **.gitignore**.
