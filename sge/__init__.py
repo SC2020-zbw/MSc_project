@@ -83,7 +83,7 @@ class job():
         return f
 
     # Submit the job and return the job id
-    def submit_job(script_name,email='-n'):
+    def submit_job(script_name):
         job_message = subprocess.run(['qsub',script_name],capture_output=True,encoding='utf-8')
         job_ID = job_message.stdout.split()[2]
         return job_ID
