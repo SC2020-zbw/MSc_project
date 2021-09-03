@@ -13,37 +13,37 @@ There are two prerequistes
 ### Open Jupyter notebook linking to Myriad
  * Open the terminal
  * For users inside the UCL firewall, link to Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
-```shell
+```command
 ssh -L 8081:localhost:8081 uccaxxx@myriad.rc.ucl.ac.uk
 ```
  * For users outside the UCL firewall, link to Myriad account with UCL username and password, **uccaxxx** is your seven-character username.
-```shell
+```command
 ssh -L 8081:localhost:8081 -o ProxyJump=uccaxxx@socrates.ucl.ac.uk uccaxxx@myriad.rc.ucl.ac.uk
 ```
  * Git clone the repository
-```shell
+```command
 git clone https://github.com/SC2020-zbw/MSc_project.git
 ```
  * Change directory to MSc_project
-```shell
+```command
 cd MSc_project
 ```
  * load python3 module
-```shell
+```command
 module load python3/recommended
 ```
  * open the jupyter notebook. 
-```shell
+```command
 virtualenv jupyter
 ```
-```shell
+```command
 source jupyter/bin/activate
 ```
-```shell
+```command
 pip3 install jupyter
 ```
-```shell
-jupyter notebook --port=8081
+```command
+jupyter notebook --no-browser --ip=127.0.0.1 --port=8081
 ```
  * Copy the URL and open it in local browser
 
@@ -61,10 +61,10 @@ The python file **mandelbrot.py** is used to generate Mandelbrot set and to plot
 #### LAMMPS
 
 **in.rhodo.scaled** and **data.rhodo** are necessary files for the LAMMPS examples. The LAMMPS example is a little more complicated, users need to open the terminal in jupyter notebook and install matplotlib and LAMMPS logfile in order to run the jupyter notebook. Both of tools are used for benchmark.
-```shell
+```command
 pip3 install matplotlib
 ```
-```shell
+```command
 pip3 install lammps-logfile
 ```
 
