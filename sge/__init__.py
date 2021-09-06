@@ -95,7 +95,7 @@ class job():
         if status != '': 
             status = status.split('\n')[2].split()[4] 
             if status == 'qw':
-                status = 'The job ' + job_ID + ' is queueing and waiting.'
+                status = 'The job ' + job_ID + ' is queuing and waiting.'
             elif status == 'r':
                 status = 'The job ' + job_ID + ' is running.'
             elif status == 't':
