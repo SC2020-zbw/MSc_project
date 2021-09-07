@@ -138,3 +138,19 @@ class job():
         error = f.read()
         f.close()
         return error
+    
+    # Read the return output file of script before a job
+    def setup_output(script_name,job_ID):
+        return_output_name = script_name + '.po' + job_ID 
+        f=open(return_output_name,'r',encoding='utf-8')
+        output = f.read()
+        f.close()
+        return output
+
+    # Read the return error file of script before a job
+    def setup_error(script_name,job_ID):
+        return_error_name = script_name + '.pe' + job_ID
+        f=open(return_error_name,'r',encoding='utf-8')
+        error = f.read()
+        f.close()
+        return error
